@@ -10,13 +10,13 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
   }
 
   void _onIncrement(CounterIncrementPressed event, Emitter<CounterState> emit) {
-    debugPrint('INCREMENT: ${event.toString()}');
-      emit(CounterState(value: state.value + 1));
+    debugPrint('INCREMENT: ${state.toString()}');
+    emit(CounterState(value: state.value + 1));
   }
 
   void _onDecrement(CounterDecrementPressed event, Emitter<CounterState> emit) {
-     debugPrint('DECREMENT: ${event.toString()}');
-      emit(CounterState(value: state.value - 1));
+    debugPrint('DECREMENT: ${state.toString()}');
+    emit(CounterState(value: state.value - 1));
   }
 }
 
@@ -24,7 +24,7 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
 // @Bloc
 // CounterBloc on int with CounterEvent {
 //   default is 0;
-  
+
 //   on Increment => emit(state + 1);
 //   on Decrement => emit(state - 1);
 // }

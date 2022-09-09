@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('CounterBloc', () {
     test('initial state is 0', () {
-      expect(CounterBloc().state, 0);
+      expect(CounterBloc().state.value, 0);
     });
 
     group('increment', () {
@@ -15,7 +15,7 @@ void main() {
         'emits [1] when state is 0',
         build: CounterBloc.new,
         act: (bloc) => bloc..add(CounterIncrementPressed()),
-        expect: () => const <int>[1],
+        expect: () => const <CounterState>[CounterState(value: 1)],
       );
 
       blocTest<CounterBloc, CounterState>(
@@ -24,7 +24,7 @@ void main() {
         act: (bloc) => bloc
           ..add(CounterIncrementPressed())
           ..add(CounterIncrementPressed()),
-        expect: () => const <int>[1, 2],
+        expect: () => const <CounterState>[CounterState(value: 1), CounterState(value: 2)],
       );
 
       blocTest<CounterBloc, CounterState>(
@@ -32,7 +32,7 @@ void main() {
         build: CounterBloc.new,
         seed: () => const CounterState(value: 41),
         act: (bloc) => bloc..add(CounterIncrementPressed()),
-        expect: () => const <int>[42],
+        expect: () => const <CounterState>[CounterState(value: 42)],
       );
     });
 
@@ -41,7 +41,7 @@ void main() {
         'emits [-1] when state is 0',
         build: CounterBloc.new,
         act: (bloc) => bloc..add(CounterDecrementPressed()),
-        expect: () => const <int>[-1],
+        expect: () => const <CounterState>[CounterState(value: -1)],
       );
 
       blocTest<CounterBloc, CounterState>(
@@ -50,7 +50,7 @@ void main() {
         act: (bloc) => bloc
           ..add(CounterDecrementPressed())
           ..add(CounterDecrementPressed()),
-        expect: () => const <int>[-1, -2],
+        expect: () => const <CounterState>[CounterState(value: -1), CounterState(value: -2)],
       );
 
       blocTest<CounterBloc, CounterState>(
@@ -58,7 +58,7 @@ void main() {
         build: CounterBloc.new,
         seed: () => const CounterState(value: 43),
         act: (bloc) => bloc..add(CounterDecrementPressed()),
-        expect: () => const <int>[42],
+        expect: () => const <CounterState>[CounterState(value: 42)],
       );
     });
   });

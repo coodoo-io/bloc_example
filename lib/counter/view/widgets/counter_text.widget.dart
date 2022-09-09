@@ -7,7 +7,7 @@ class CounterText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final counterValue = context.select((CounterBloc bloc) => bloc.state);
+    final counterValue = context.select((CounterBloc bloc) => bloc.state.value);
     return Text(
       '$counterValue',
       style: Theme.of(context).textTheme.headline4,
