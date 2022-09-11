@@ -4,19 +4,24 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
-  CounterBloc() : super(const CounterState(value: 0)) {
+  CounterBloc() : super(const CounterInitializedState(value: 0)) {
     on<CounterIncrementPressed>(_onIncrement);
     on<CounterDecrementPressed>(_onDecrement);
   }
 
   void _onIncrement(CounterIncrementPressed event, Emitter<CounterState> emit) {
     debugPrint('INCREMENT: ${state.value.toString()}');
-    emit(CounterState(value: state.value + 1));
+    var newValue = state.value + 1;
+    if (newValue == 10) {
+      emit(const CounterIsTenState(value: 10));
+    } else {
+      emit(CounterUpdatedState(value: state.value + 1));
+    }
   }
 
   void _onDecrement(CounterDecrementPressed event, Emitter<CounterState> emit) {
     debugPrint('DECREMENT: ${state.value.toString()}');
-    emit(CounterState(value: state.value - 1));
+    emit(CounterUpdatedState(value: state.value - 1));
   }
 
   @override

@@ -9,7 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockCounterBloc extends MockBloc<CounterEvent, CounterState> implements CounterBloc {}
+class MockCounterBloc extends MockBloc<CounterEvent, CounterState>
+    implements CounterBloc {}
 
 void main() {
   late CounterBloc counterBloc;
@@ -20,7 +21,8 @@ void main() {
 
   group('CounterView', () {
     testWidgets('renders current CounterBloc state', (tester) async {
-      when(() => counterBloc.state).thenReturn(const CounterState(value: 42));
+      when(() => counterBloc.state)
+          .thenReturn(const CounterUpdatedState(value: 42));
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider.value(
@@ -33,7 +35,8 @@ void main() {
     });
 
     testWidgets('tapping increment button invokes increment', (tester) async {
-      when(() => counterBloc.state).thenReturn(const CounterState(value: 0));
+      when(() => counterBloc.state)
+          .thenReturn(const CounterUpdatedState(value: 0));
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider.value(
@@ -49,7 +52,8 @@ void main() {
     });
 
     testWidgets('tapping decrement button invokes decrement', (tester) async {
-      when(() => counterBloc.state).thenReturn(const CounterState(value: 0));
+      when(() => counterBloc.state)
+          .thenReturn(const CounterUpdatedState(value: 0));
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider.value(

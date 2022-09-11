@@ -15,7 +15,7 @@ void main() {
         'emits [1] when state is 0',
         build: CounterBloc.new,
         act: (bloc) => bloc..add(CounterIncrementPressed()),
-        expect: () => const <CounterState>[CounterState(value: 1)],
+        expect: () => const <CounterState>[CounterUpdatedState(value: 1)],
       );
 
       blocTest<CounterBloc, CounterState>(
@@ -24,15 +24,18 @@ void main() {
         act: (bloc) => bloc
           ..add(CounterIncrementPressed())
           ..add(CounterIncrementPressed()),
-        expect: () => const <CounterState>[CounterState(value: 1), CounterState(value: 2)],
+        expect: () => const <CounterState>[
+          CounterUpdatedState(value: 1),
+          CounterUpdatedState(value: 2)
+        ],
       );
 
       blocTest<CounterBloc, CounterState>(
         'emits [42] when state is 41',
         build: CounterBloc.new,
-        seed: () => const CounterState(value: 41),
+        seed: () => const CounterUpdatedState(value: 41),
         act: (bloc) => bloc..add(CounterIncrementPressed()),
-        expect: () => const <CounterState>[CounterState(value: 42)],
+        expect: () => const <CounterState>[CounterUpdatedState(value: 42)],
       );
     });
 
@@ -41,7 +44,7 @@ void main() {
         'emits [-1] when state is 0',
         build: CounterBloc.new,
         act: (bloc) => bloc..add(CounterDecrementPressed()),
-        expect: () => const <CounterState>[CounterState(value: -1)],
+        expect: () => const <CounterState>[CounterUpdatedState(value: -1)],
       );
 
       blocTest<CounterBloc, CounterState>(
@@ -50,15 +53,18 @@ void main() {
         act: (bloc) => bloc
           ..add(CounterDecrementPressed())
           ..add(CounterDecrementPressed()),
-        expect: () => const <CounterState>[CounterState(value: -1), CounterState(value: -2)],
+        expect: () => const <CounterState>[
+          CounterUpdatedState(value: -1),
+          CounterUpdatedState(value: -2)
+        ],
       );
 
       blocTest<CounterBloc, CounterState>(
         'emits [42] when state is 43',
         build: CounterBloc.new,
-        seed: () => const CounterState(value: 43),
+        seed: () => const CounterUpdatedState(value: 43),
         act: (bloc) => bloc..add(CounterDecrementPressed()),
-        expect: () => const <CounterState>[CounterState(value: 42)],
+        expect: () => const <CounterState>[CounterUpdatedState(value: 42)],
       );
     });
   });
