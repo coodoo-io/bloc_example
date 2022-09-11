@@ -18,6 +18,14 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     debugPrint('DECREMENT: ${state.value.toString()}');
     emit(CounterState(value: state.value - 1));
   }
+
+  @override
+  void onChange(Change<CounterState> change) {
+    super.onChange(change);
+    debugPrint(
+      'CHANGE: Von ${change.currentState.value.toString()} zu  ${change.nextState.value.toString()}',
+    );
+  }
 }
 
 // Possible FUTURE mit static meta-programming
