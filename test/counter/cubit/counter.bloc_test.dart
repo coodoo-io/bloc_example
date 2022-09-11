@@ -24,10 +24,7 @@ void main() {
         act: (bloc) => bloc
           ..add(CounterIncrementPressed())
           ..add(CounterIncrementPressed()),
-        expect: () => const <CounterState>[
-          CounterUpdatedState(value: 1),
-          CounterUpdatedState(value: 2)
-        ],
+        expect: () => const <CounterState>[CounterUpdatedState(value: 1), CounterUpdatedState(value: 2)],
       );
 
       blocTest<CounterBloc, CounterState>(
@@ -53,10 +50,7 @@ void main() {
         act: (bloc) => bloc
           ..add(CounterDecrementPressed())
           ..add(CounterDecrementPressed()),
-        expect: () => const <CounterState>[
-          CounterUpdatedState(value: -1),
-          CounterUpdatedState(value: -2)
-        ],
+        expect: () => const <CounterState>[CounterUpdatedState(value: -1), CounterUpdatedState(value: -2)],
       );
 
       blocTest<CounterBloc, CounterState>(
