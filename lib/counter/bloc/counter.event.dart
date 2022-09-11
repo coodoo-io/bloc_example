@@ -1,5 +1,8 @@
-abstract class CounterEvent {
-  const CounterEvent();
+import 'package:equatable/equatable.dart';
+
+abstract class CounterEvent extends Equatable {
+  @override
+  List<Object> get props => [];
 }
 
 /// Notifies bloc to increment state.

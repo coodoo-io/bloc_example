@@ -34,7 +34,6 @@ void main() {
 
     testWidgets('tapping increment button invokes increment', (tester) async {
       when(() => counterBloc.state).thenReturn(const CounterState(value: 0));
-      when(() => counterBloc.add(CounterIncrementPressed())).thenReturn(null);
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider.value(
@@ -43,13 +42,14 @@ void main() {
           ),
         ),
       );
-      await tester.tap(find.byKey(keyButtonIncrement));
+      final incrementFinder = find.byKey(keyButtonIncrement);
+      await tester.ensureVisible(incrementFinder);
+      await tester.tap(incrementFinder);
       verify(() => counterBloc.add(CounterIncrementPressed())).called(1);
     });
 
     testWidgets('tapping decrement button invokes decrement', (tester) async {
       when(() => counterBloc.state).thenReturn(const CounterState(value: 0));
-      when(() => counterBloc.add(CounterDecrementPressed())).thenReturn(null);
       await tester.pumpWidget(
         MaterialApp(
           home: BlocProvider.value(
