@@ -38,6 +38,9 @@ lint:
 test:
 	flutter test
 .PHONY: test
+test-coverage:
+	printf "on macOS you need to `brew install lcov`"
+	flutter test --coverage && genhtml coverage/lcov.info --output=coverage
 
 # Build runner
 build-runner:
