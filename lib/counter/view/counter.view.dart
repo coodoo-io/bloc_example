@@ -1,6 +1,5 @@
 import 'package:bloc_example/counter/bloc/counter.bloc.dart';
 import 'package:bloc_example/counter/bloc/counter.event.dart';
-import 'package:bloc_example/counter/bloc/counter.state.dart';
 import 'package:bloc_example/counter/view/widgets/counter_text.widget.dart';
 import 'package:bloc_example/main.dart';
 import 'package:flutter/material.dart';
